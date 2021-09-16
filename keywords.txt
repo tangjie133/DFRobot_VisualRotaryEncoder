@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For PID Library
+#######################################
+
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+DFRobot_RotaryEncoder	KEYWORD1
+DFRobot_RotaryEncoder_IIC	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+readBasicInfo	KEYWORD2
+getEncoderValue	KEYWORD2
+setEncoderValue	KEYWORD2
+getGainCoefficient	KEYWORD2
+setGainCoefficient	KEYWORD2
+detectButtonDown	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+
