@@ -4,16 +4,16 @@
   # @brief     这个demo演示了如何获取编码器基本信息、当前计数值和当前旋转增益
   # @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   # @licence   The MIT License (MIT)
-  # @author    [qsjhyy](qsj.huang@dfrobot.com)
-  # @version   V0.1
+  # @author    [qsjhyy](yihuan.huang@dfrobot.com)
+  # @version   V1.0.0
   # @date      2021-09-15
   # @get       from https://www.dfrobot.com
-  # @url       https://github.com/DFRobot/DFRobot_RotaryEncoder
+  # @url       https://github.com/DFRobot/DFRobot_VisualRotaryEncoder
 '''
 from __future__ import print_function
 import sys
 sys.path.append('../')
-from DFRobot_RotaryEncoder import *
+from DFRobot_VisualRotaryEncoder import *
 
 '''
 实例化一个对象，来驱动我们的传感器;
@@ -25,7 +25,7 @@ from DFRobot_RotaryEncoder import *
 | 1 | 0 | 0x56 |
 | 1 | 1 | 0x57 |
 '''
-sensor = DFRobot_RotaryEncoder(i2c_addr = 0x54, bus = 1)
+sensor = DFRobot_VisualRotaryEncoder(i2c_addr = 0x54, bus = 1)
 
 
 def setup():

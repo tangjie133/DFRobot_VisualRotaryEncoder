@@ -6,8 +6,8 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-DFRobot_RotaryEncoder	KEYWORD1
-DFRobot_RotaryEncoder_IIC	KEYWORD1
+DFRobot_VisualRotaryEncoder	KEYWORD1
+DFRobot_VisualRotaryEncoder_IIC	KEYWORD1
 
 
 #######################################

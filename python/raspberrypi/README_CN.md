@@ -1,4 +1,4 @@
-# DFRobot_RotaryEncoder
+# DFRobot_VisualRotaryEncoder
 * [English Version](./README.md)
 
 这是一款使用简单的旋转编码器。使用了Gravity-I2C接口输出数据。与常规的电位器相比，它有更好的手感，更高的精度，旋转步进精度可设置。并且，有一圈LED显示当前的值，形象直观。
@@ -110,9 +110,9 @@
 ## History
 
 - data 2021-09-15
-- version V0.1
+- Version V1.0.0
 
 
 ## Credits
 
-Written by qsjhyy(qsj.huang@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
+Written by qsjhyy(yihuan.huang@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))

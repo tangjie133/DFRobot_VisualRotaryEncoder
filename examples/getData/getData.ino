@@ -3,13 +3,13 @@
  * @brief       这个demo演示了如何获取编码器基本信息、当前计数值和当前旋转增益
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @licence     The MIT License (MIT)
- * @author      [qsjhyy](qsj.huang@dfrobot.com)
+ * @author      [qsjhyy](yihuan.huang@dfrobot.com)
  * @version     V0.1
  * @date        2021-09-15
  * @get from    https://www.dfrobot.com
- * @url         https://github.com/DFRobot/DFRobot_RotaryEncoder
+ * @url         https://github.com/DFRobot/DFRobot_VisualRotaryEncoder
  */
-#include <DFRobot_RotaryEncoder.h>
+#include <DFRobot_VisualRotaryEncoder.h>
 
 /*
 实例化一个对象，来驱动我们的传感器;
@@ -21,7 +21,7 @@
 | 1 | 0 | 0x56 |
 | 1 | 1 | 0x57 |
 */
-DFRobot_RotaryEncoder_IIC sensor(/*iicAddr = */0x54, /*iicBus = */&Wire);
+DFRobot_VisualRotaryEncoder_IIC sensor(/*iicAddr = */0x54, /*iicBus = */&Wire);
 
 void setup()
 {

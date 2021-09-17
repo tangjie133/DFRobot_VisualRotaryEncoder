@@ -1,18 +1,18 @@
 /*!
- * @file DFRobot_RotaryEncoder.h
- * @brief DFRobot_RotaryEncoder.h detailed description for DFRobot_RotaryEncoder.cpp
- * @n DFRobot_RotaryEncoder.h 定义了设备信息寄存器和设备功能寄存器，声明了传感器的功能函数api
+ * @file DFRobot_VisualRotaryEncoder.h
+ * @brief DFRobot_VisualRotaryEncoder.h detailed description for DFRobot_VisualRotaryEncoder.cpp
+ * @n DFRobot_VisualRotaryEncoder.h 定义了设备信息寄存器和设备功能寄存器，声明了传感器的功能函数api
  * 
  * @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @licence The MIT License (MIT)
- * @author [qsjhyy](qsj.huang@dfrobot.com)
- * @version V0.1
+ * @author [qsjhyy](yihuan.huang@dfrobot.com)
+ * @Version V1.0.0
  * @date 2021-09-14
  * @get from https://www.dfrobot.com
- * @url https://github.com/DFRobot/DFRobot_RotaryEncoder
+ * @url https://github.com/DFRobot/DFRobot_VisualRotaryEncoder
  */
-#ifndef __DFROBOT_ROTARY_ENCODER_H__
-#define __DFROBOT_ROTARY_ENCODER_H__
+#ifndef __DFROBOT_VISUAL_ROTARY_ENCODER_H__
+#define __DFROBOT_VISUAL_ROTARY_ENCODER_H__
 
 #if (ARDUINO >= 100)
  #include "Arduino.h"
@@ -30,24 +30,24 @@
 #endif
 
 
-#define ROTARY_ENCODER_DEFAULT_IIC_ADDR   uint8_t(0x54)      // 默认的IIC通信地址
-#define ROTARY_ENCODER_PID                uint16_t(0x01F6)   // 模块的PID (SEN0502)(最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
+#define VISUAL_ROTARY_ENCODER_DEFAULT_IIC_ADDR   uint8_t(0x54)      // 默认的IIC通信地址
+#define VISUAL_ROTARY_ENCODER_PID                uint16_t(0x01F6)   // 模块的PID (SEN0502)(最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
 
-// ROTARY_ENCODER register address
-#define ROTARY_ENCODER_PID_MSB_REG                 uint8_t(0x00)   // 模块的PID存储寄存器，默认值0x01F6 (最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
-#define ROTARY_ENCODER_PID_LSB_REG                 uint8_t(0x01)
-#define ROTARY_ENCODER_VID_MSB_REG                 uint8_t(0x02)   // 模块的VID存储寄存器，默认值0x3343（代表厂商为DFRobot）
-#define ROTARY_ENCODER_VID_LSB_REG                 uint8_t(0x03)
-#define ROTARY_ENCODER_VERSION_MSB_REG             uint8_t(0x04)   // 固件版本号存储寄存器：0x0100代表V0.1.0.0
-#define ROTARY_ENCODER_VERSION_LSB_REG             uint8_t(0x05)
-#define ROTARY_ENCODER_ADDR_REG                    uint8_t(0x07)   // 模块的通信地址存储寄存器，默认值0x54，模块的设备地址(1~127)
-#define ROTARY_ENCODER_COUNT_MSB_REG               uint8_t(0x08)   // 编码器计数值，范围0-1023
-#define ROTARY_ENCODER_COUNT_LSB_REG               uint8_t(0x09)
-#define ROTARY_ENCODER_KEY_STATUS_REG              uint8_t(0x0A)   // 编码器按键状态
-#define ROTARY_ENCODER_GAIN_REG                    uint8_t(0x0B)   // 编码器增量系数
+// VISUAL_ROTARY_ENCODER register address
+#define VISUAL_ROTARY_ENCODER_PID_MSB_REG                 uint8_t(0x00)   // 模块的PID存储寄存器，默认值0x01F6 (最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
+#define VISUAL_ROTARY_ENCODER_PID_LSB_REG                 uint8_t(0x01)
+#define VISUAL_ROTARY_ENCODER_VID_MSB_REG                 uint8_t(0x02)   // 模块的VID存储寄存器，默认值0x3343（代表厂商为DFRobot）
+#define VISUAL_ROTARY_ENCODER_VID_LSB_REG                 uint8_t(0x03)
+#define VISUAL_ROTARY_ENCODER_VERSION_MSB_REG             uint8_t(0x04)   // 固件版本号存储寄存器：0x0100代表V0.1.0.0
+#define VISUAL_ROTARY_ENCODER_VERSION_LSB_REG             uint8_t(0x05)
+#define VISUAL_ROTARY_ENCODER_ADDR_REG                    uint8_t(0x07)   // 模块的通信地址存储寄存器，默认值0x54，模块的设备地址(1~127)
+#define VISUAL_ROTARY_ENCODER_COUNT_MSB_REG               uint8_t(0x08)   // 编码器计数值，范围0-1023
+#define VISUAL_ROTARY_ENCODER_COUNT_LSB_REG               uint8_t(0x09)
+#define VISUAL_ROTARY_ENCODER_KEY_STATUS_REG              uint8_t(0x0A)   // 编码器按键状态
+#define VISUAL_ROTARY_ENCODER_GAIN_REG                    uint8_t(0x0B)   // 编码器增量系数
 
 
-class DFRobot_RotaryEncoder
+class DFRobot_VisualRotaryEncoder
 {
 public:
   #define NO_ERR             0   // No error
@@ -58,7 +58,7 @@ public:
   /**
   * @brief 构造函数
   */
-  DFRobot_RotaryEncoder();
+  DFRobot_VisualRotaryEncoder();
 
   /**
   * @brief 初始化函数
@@ -134,7 +134,7 @@ private:
 
 /***************** IIC接口的初始化和读写 ******************************/
 
-class DFRobot_RotaryEncoder_IIC:public DFRobot_RotaryEncoder
+class DFRobot_VisualRotaryEncoder_IIC:public DFRobot_VisualRotaryEncoder
 {
 public:
   /**
@@ -142,7 +142,7 @@ public:
   * @param IIC_addr RotaryEncoder IIC communication address
   *        pWire Wire.h里定义了Wire对象，因此使用&Wire就能够指向并使用Wire中的方法
   */
-  DFRobot_RotaryEncoder_IIC(uint8_t IIC_addr=ROTARY_ENCODER_DEFAULT_IIC_ADDR, TwoWire *pWire = &Wire);
+  DFRobot_VisualRotaryEncoder_IIC(uint8_t IIC_addr=VISUAL_ROTARY_ENCODER_DEFAULT_IIC_ADDR, TwoWire *pWire = &Wire);
 
   /**
   * @brief 子类初始化函数

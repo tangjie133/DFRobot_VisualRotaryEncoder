@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*
 '''
-  @file DFRobot_RotaryEncoder.py
-  @brief Define the infrastructure of DFRobot_RotaryEncoder class.
+  @file DFRobot_VisualRotaryEncoder.py
+  @brief Define the infrastructure of DFRobot_VisualRotaryEncoder class.
   @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   @licence     The MIT License (MIT)
-  @author [qsjhyy](qsj.huang@dfrobot.com)
-  @version  V0.1
+  @author [qsjhyy](yihuan.huang@dfrobot.com)
+  @version  V1.0.0
   @date  2021-09-15
   @get from https://www.dfrobot.com
-  @url https://github.com/DFRobot/DFRobot_RotaryEncoder
+  @url https://github.com/DFRobot/DFRobot_VisualRotaryEncoder
 '''
 import sys
 import time
@@ -26,27 +26,27 @@ ph.setFormatter(formatter)
 logger.addHandler(ph)
 
 
-ROTARY_ENCODER_DEFAULT_IIC_ADDR = 0x54     # 默认的IIC通信地址
-ROTARY_ENCODER_PID              = 0x01F6   # 模块的PID (SEN0502)(最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
+VISUAL_ROTARY_ENCODER_DEFAULT_IIC_ADDR = 0x54     # 默认的IIC通信地址
+VISUAL_ROTARY_ENCODER_PID              = 0x01F6   # 模块的PID (SEN0502)(最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
 
-# ROTARY_ENCODER register address
-ROTARY_ENCODER_PID_MSB_REG     = 0x00   # 模块的PID存储寄存器，默认值0x01F6 (最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
-ROTARY_ENCODER_PID_LSB_REG     = 0x01
-ROTARY_ENCODER_VID_MSB_REG     = 0x02   # 模块的VID存储寄存器，默认值0x3343（代表厂商为DFRobot）
-ROTARY_ENCODER_VID_LSB_REG     = 0x03
-ROTARY_ENCODER_VERSION_MSB_REG = 0x04   # 固件版本号存储寄存器：0x0100代表V0.1.0.0
-ROTARY_ENCODER_VERSION_LSB_REG = 0x05
-ROTARY_ENCODER_ADDR_REG        = 0x07   # 模块的通信地址存储寄存器，默认值0x54，模块的设备地址(1~127)
-ROTARY_ENCODER_COUNT_MSB_REG   = 0x08   # 编码器计数值，范围0-1023
-ROTARY_ENCODER_COUNT_LSB_REG   = 0x09
-ROTARY_ENCODER_KEY_STATUS_REG  = 0x0A   # 编码器按键状态
-ROTARY_ENCODER_GAIN_REG        = 0x0B   # 编码器增量系数
+# VISUAL_ROTARY_ENCODER register address
+VISUAL_ROTARY_ENCODER_PID_MSB_REG     = 0x00   # 模块的PID存储寄存器，默认值0x01F6 (最高两位作为种类判断00：SEN、01：DFR、10：TEL，后面14位作为num)
+VISUAL_ROTARY_ENCODER_PID_LSB_REG     = 0x01
+VISUAL_ROTARY_ENCODER_VID_MSB_REG     = 0x02   # 模块的VID存储寄存器，默认值0x3343（代表厂商为DFRobot）
+VISUAL_ROTARY_ENCODER_VID_LSB_REG     = 0x03
+VISUAL_ROTARY_ENCODER_VERSION_MSB_REG = 0x04   # 固件版本号存储寄存器：0x0100代表V0.1.0.0
+VISUAL_ROTARY_ENCODER_VERSION_LSB_REG = 0x05
+VISUAL_ROTARY_ENCODER_ADDR_REG        = 0x07   # 模块的通信地址存储寄存器，默认值0x54，模块的设备地址(1~127)
+VISUAL_ROTARY_ENCODER_COUNT_MSB_REG   = 0x08   # 编码器计数值，范围0-1023
+VISUAL_ROTARY_ENCODER_COUNT_LSB_REG   = 0x09
+VISUAL_ROTARY_ENCODER_KEY_STATUS_REG  = 0x0A   # 编码器按键状态
+VISUAL_ROTARY_ENCODER_GAIN_REG        = 0x0B   # 编码器增量系数
 
-class DFRobot_RotaryEncoder(object):
+class DFRobot_VisualRotaryEncoder(object):
     '''
        @brief Module init
     '''
-    def __init__(self, i2c_addr=ROTARY_ENCODER_DEFAULT_IIC_ADDR, bus=1):
+    def __init__(self, i2c_addr=VISUAL_ROTARY_ENCODER_DEFAULT_IIC_ADDR, bus=1):
         '''初始化配置参数'''
         self._iic_addr = i2c_addr
         self._i2c = smbus.SMBus(bus)
@@ -57,7 +57,7 @@ class DFRobot_RotaryEncoder(object):
     '''
     def begin(self):
         ret = True
-        chip_id = self._read_reg(ROTARY_ENCODER_PID_MSB_REG, 2)
+        chip_id = self._read_reg(VISUAL_ROTARY_ENCODER_PID_MSB_REG, 2)
         logger.info((chip_id[0] << 8) | chip_id[1])
         if 0x01F6 != (chip_id[0] << 8) | chip_id[1]:
             ret = False
@@ -73,7 +73,7 @@ class DFRobot_RotaryEncoder(object):
     '''
     def read_basic_info(self):
         info = [0, 0, 0, 0]
-        data = self._read_reg(ROTARY_ENCODER_PID_MSB_REG, 8)
+        data = self._read_reg(VISUAL_ROTARY_ENCODER_PID_MSB_REG, 8)
 
         info[0] = (data[0] << 8) | data[1]   # PID
         info[1] = (data[2] << 8) | data[3]   # VID
@@ -87,7 +87,7 @@ class DFRobot_RotaryEncoder(object):
       @return 返回值范围为： 0-1023
     '''
     def get_encoder_value(self):
-        data = self._read_reg(ROTARY_ENCODER_COUNT_MSB_REG, 2)
+        data = self._read_reg(VISUAL_ROTARY_ENCODER_COUNT_MSB_REG, 2)
         return (data[0] << 8) | data[1]
 
     '''
@@ -97,7 +97,7 @@ class DFRobot_RotaryEncoder(object):
     def set_encoder_value(self, value):
         if ((0x0000 <= value) and (0x3FF >= value)):
             temp_buf = [(value & 0xFF00) >> 8, value & 0x00FF]
-            self._write_reg(ROTARY_ENCODER_COUNT_MSB_REG, temp_buf)
+            self._write_reg(VISUAL_ROTARY_ENCODER_COUNT_MSB_REG, temp_buf)
 
     '''
       @brief 获取编码器当前增益系数，转动一格的数值精度。
@@ -105,7 +105,7 @@ class DFRobot_RotaryEncoder(object):
       @return 返回值范围为： 1-51
     '''
     def get_gain_coefficient(self):
-        return self._read_reg(ROTARY_ENCODER_GAIN_REG, 1)[0]
+        return self._read_reg(VISUAL_ROTARY_ENCODER_GAIN_REG, 1)[0]
 
     '''
       @brief 设置编码器增益系数，转动一格的数值精度。
@@ -114,7 +114,7 @@ class DFRobot_RotaryEncoder(object):
     '''
     def set_gain_coefficient(self, gain_value):
         if ((0x01 <= gain_value) and (0x33 >= gain_value)):
-            self._write_reg(ROTARY_ENCODER_GAIN_REG, gain_value)
+            self._write_reg(VISUAL_ROTARY_ENCODER_GAIN_REG, gain_value)
 
     '''
       @brief 检测按键是否已按下
@@ -122,8 +122,8 @@ class DFRobot_RotaryEncoder(object):
     '''
     def detect_button_down(self):
         ret = False
-        if(1 == self._read_reg(ROTARY_ENCODER_KEY_STATUS_REG, 1)[0]):
-            self._write_reg(ROTARY_ENCODER_KEY_STATUS_REG, 0)
+        if(1 == self._read_reg(VISUAL_ROTARY_ENCODER_KEY_STATUS_REG, 1)[0]):
+            self._write_reg(VISUAL_ROTARY_ENCODER_KEY_STATUS_REG, 0)
             ret = True
         return ret
 
