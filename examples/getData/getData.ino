@@ -4,7 +4,7 @@
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @licence     The MIT License (MIT)
  * @author      [qsjhyy](yihuan.huang@dfrobot.com)
- * @version     V0.1
+ * @version     V1.0.0
  * @date        2021-09-15
  * @get from    https://www.dfrobot.com
  * @url         https://github.com/DFRobot/DFRobot_VisualRotaryEncoder
@@ -13,8 +13,8 @@
 
 /*
 实例化一个对象，来驱动我们的传感器;
-地址根据编码器拨码开关设置:
-| a | b | ADDR |
+地址根据编码器拨码开关CH1和CH2设置:
+| 1 | 2 | ADDR |
 |---|---|------|
 | 0 | 0 | 0x54 |
 | 0 | 1 | 0x55 |
